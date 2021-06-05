@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.carlosjunior.cliente.escola.gradecurricular.entities.MateriaEntity;
 
-public interface MateriaRepository extends JpaRepository<MateriaEntity, Long> {
+public interface IMateriaRepository extends JpaRepository<MateriaEntity, Long> {
 
 }
