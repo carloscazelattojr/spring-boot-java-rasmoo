@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/materia")
 public class MateriaController {
 
-	@GetMapping(value = "/")
+	@GetMapping
 	public ResponseEntity<String> helloWordRest(){
 		return ResponseEntity.status(HttpStatus.OK).body("Olá Mundo Rest!!!");
 	}
