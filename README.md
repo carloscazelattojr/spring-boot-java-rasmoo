@@ -1,11 +1,11 @@
-# Treinamento Java Back-End Engineer com SpringBoot 
+# Treinamento Java Back-End Engineer com Spring Boot
 
 Construindo API REST Java com Spring Boot: Escola
 
-- 1) Microsserviço: Grade-Curricular
+- Micro-serviço: Grade-Curricular
 
 
-# 1) Microsserviço Grade-Curricular:
+# Micro-serviço Grade-Curricular:
 
 Spring Initializr: https://start.spring.io
 
@@ -24,14 +24,15 @@ Spring Initializr: https://start.spring.io
 	
 ## Dependencias do projeto
 - Spring Boot DevTools
-- Lombok
+- Lombok 
 - Spring Web
 - PosgreSQL Driver (Será utilizado o PostgreSql como banco de dados).
 - Spring Data JPA
 - Spring Boot Actuator
 
-
-
+## Extras
+- SonarLint (Instalar no Eclipse)
+- Lombok (Instalar no Eclipse)
 
 
 
