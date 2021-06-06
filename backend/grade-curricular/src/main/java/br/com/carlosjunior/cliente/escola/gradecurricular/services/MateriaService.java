@@ -6,6 +6,10 @@ import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,7 @@ import br.com.carlosjunior.cliente.escola.gradecurricular.entities.MateriaEntity
 import br.com.carlosjunior.cliente.escola.gradecurricular.exceptions.MateriaException;
 import br.com.carlosjunior.cliente.escola.gradecurricular.repositories.IMateriaRepository;
 
+@CacheConfig(cacheNames = "materia")
 @Service
 public class MateriaService implements IMateraService {
 
@@ -75,6 +80,7 @@ public class MateriaService implements IMateraService {
 		}
 	}
 
+	@CachePut(unless = "#result.size()<3")
 	@Override
 	public List<MateriaDto> listar() {
 		try {
@@ -85,6 +91,7 @@ public class MateriaService implements IMateraService {
 		}
 	}
 
+	@CachePut(key = "#id")
 	@Override
 	public MateriaDto consultar(Long id) {
 		try {
