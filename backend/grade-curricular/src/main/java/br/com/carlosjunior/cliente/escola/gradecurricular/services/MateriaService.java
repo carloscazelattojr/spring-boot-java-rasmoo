@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.carlosjunior.cliente.escola.gradecurricular.entities.MateriaEntity;
+import br.com.carlosjunior.cliente.escola.gradecurricular.exceptions.MateriaException;
 import br.com.carlosjunior.cliente.escola.gradecurricular.repositories.IMateriaRepository;
 
 @Service
@@ -21,7 +23,7 @@ public class MateriaService implements IMateraService {
 		try {
 
 			// Irei utilizar o buscar por ID, onde irá retornar a materiaEntity.
-			MateriaEntity materiaEntity = this.materiaRepository.findById(materia.getId()).get();
+			MateriaEntity materiaEntity = this.consultar(materia.getId());
 
 			// Atualizar a matéria que está vindo no banco.
 			materiaEntity.setNome(materia.getNome());
@@ -31,20 +33,26 @@ public class MateriaService implements IMateraService {
 
 			// Salvar as alterações.
 			this.materiaRepository.save(materiaEntity);
-			return true;
+			
+			return Boolean.TRUE;
 
+		}catch (MateriaException m) {
+			throw m;
 		} catch (Exception e) {
-			return false;
+			throw e;
 		}
 	}
 
 	@Override
 	public Boolean excluir(Long id) {
 		try {
+			this.consultar(id);
 			this.materiaRepository.deleteById(id);
 			return true;
+		} catch (MateriaException m) {
+			throw m;
 		} catch (Exception e) {
-			return false;
+			throw e;
 		}
 	}
 
@@ -76,9 +84,11 @@ public class MateriaService implements IMateraService {
 			if (materiaEntityOptional.isPresent()) {
 				return materiaEntityOptional.get();
 			}
-			return null;
+			throw new MateriaException("Materia não encontrada! [MateriaService.java]", HttpStatus.NOT_FOUND);
+		} catch (MateriaException m) {
+			throw m;
 		} catch (Exception e) {
-			return null;
+			throw new MateriaException("Erro interno no servidor! [MateriaService.java]", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

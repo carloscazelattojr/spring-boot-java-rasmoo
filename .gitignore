@@ -34,6 +34,7 @@ build/
 
 ### Eclipse ###
 .metadata
+.sonarlint
 
 ### Eclipse ###
 .DS_Store
