@@ -5,7 +5,7 @@ Construindo API REST Java com Spring Boot: Escola
 - Micro-serviço: Grade-Curricular
 
 
-# Micro-serviço Grade-Curricular:
+# Criar Projeto:
 
 Spring Initializr: https://start.spring.io
 
@@ -33,7 +33,8 @@ Spring Initializr: https://start.spring.io
 ## Extras
 - SonarLint (Instalar no Eclipse)
 - Lombok (Instalar no Eclipse)
-
+- Validation
+- ModelMapper
 
 
 Créditos: Rasmoo

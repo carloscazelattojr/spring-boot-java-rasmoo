@@ -2,6 +2,8 @@ package br.com.carlosjunior.cliente.escola.gradecurricular.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.carlosjunior.cliente.escola.gradecurricular.dto.MateriaDto;
 import br.com.carlosjunior.cliente.escola.gradecurricular.entities.MateriaEntity;
 import br.com.carlosjunior.cliente.escola.gradecurricular.services.MateriaService;
 
@@ -25,22 +28,22 @@ public class MateriaController {
 	private MateriaService materiaService;
 
 	@GetMapping
-	public ResponseEntity<List<MateriaEntity>> listarMaterias() {
+	public ResponseEntity<List<MateriaDto>> listarMaterias() {
 		return ResponseEntity.status(HttpStatus.OK).body(this.materiaService.listar());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<MateriaEntity> consultarMateria(@PathVariable Long id) {
+	public ResponseEntity<MateriaDto> consultarMateria(@PathVariable Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.materiaService.consultar(id));
 	}
 
 	@PostMapping
-	public ResponseEntity<Boolean> cadastrarMateria(@RequestBody MateriaEntity materia) {
+	public ResponseEntity<Boolean> cadastrarMateria(@Valid @RequestBody MateriaDto materia) {
 		return ResponseEntity.status(HttpStatus.OK).body(materiaService.cadastrar(materia));
 	}
 
 	@PutMapping
-	public ResponseEntity<Boolean> atualizarMateria(@RequestBody MateriaEntity materia) {
+	public ResponseEntity<Boolean> atualizarMateria(@Valid @RequestBody MateriaDto materia) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.materiaService.atualizar(materia));
 	}
 
