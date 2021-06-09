@@ -46,16 +46,16 @@ public class MateriaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Response<MateriaDto>> consultarMateria(@PathVariable Long id) {
 		Response<MateriaDto> response = new Response<>();
-		response.setData(this.materiaService.consultar(id));
+		MateriaDto materia = this.materiaService.consultar(id);
+		response.setData(materia);
 		response.setStatusCode(HttpStatus.OK.value());
 		response.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).consultarMateria(id))
 				.withSelfRel());
 
 		response.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).excluirMateria(id))
 				.withRel(DELETE));
-		response.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).excluirMateria(id))
+		response.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class).atualizarMateria(materia))
 				.withRel(UPDATE));
-
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
