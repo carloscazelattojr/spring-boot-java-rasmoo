@@ -3,6 +3,8 @@
 Construindo API REST Java com Spring Boot: Escola
 
 - Micro-serviço: Grade-Curricular
+					-	Matéria
+					- 	Curso
 
 
 # Criar Projeto:
